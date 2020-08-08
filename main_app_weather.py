@@ -6,18 +6,17 @@ def labelPrint(weather):
     name = weather["name"]
     desc = weather["weather"][0]['description']
     temper = weather["main"]['temp']
-    return name + " " + desc + " " + "temper"
+    return name + "\n\n" + desc + "\n\n" + str(temper) + " "
 def getWeather(textbox):
-    try:
-        url = "https://api.openweathermap.org/data/2.5/weather"
-        key1 = "3f71308adcee47bf88ef55c3660179f8"
-        params = {"APPID" : key1 , "q" : textbox , "units" : "metric"}
-        x = requests.get(url,params = params)
-        weather = x.json()
-        
-        textbox2['text'] = labelPrint(weather)
-    except:
-        print("Value error")
+    
+    url = "https://api.openweathermap.org/data/2.5/weather"
+    key1 = "3f71308adcee47bf88ef55c3660179f8"
+    params = {"APPID" : key1 , "q" : textbox , "units" : "metric"}
+    x = requests.get(url,params = params)
+    weather = x.json()
+    print(x.json())
+    textbox2['text'] = labelPrint(weather)
+    
 def buttonowy(textbox):
     print("Wpisales" , str(textbox))
 
@@ -31,7 +30,7 @@ framew_b = LabelFrame(root,bg ="#60b563" )
 
 textb2_frame = LabelFrame(root,bg = "#60b563")
 
-textbox2 = Label(root,bg = "white")
+textbox2 = Label(root,bg = "white",anchor = "nw",padx = 20,pady = 10)
 
 textbox = Entry(root)
 
